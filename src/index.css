@@ -1,0 +1,499 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.92);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.6s;
+}
+
+/* Background themes */
+.bg-clear-day {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-clear-night {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+}
+
+.bg-cloudy {
+  background: linear-gradient(135deg, #757F9A 0%, #D7DDE8 100%);
+}
+
+.bg-rainy {
+  background: linear-gradient(135deg, #373B44 0%, #4286f4 100%);
+}
+
+.bg-snowy {
+  background: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);
+}
+
+.bg-thunderstorm {
+  background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
+}
+
+.bg-foggy {
+  background: linear-gradient(135deg, #606c88 0%, #3f4c6b 100%);
+}
+
+/* Weather animations */
+.weather-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Enhanced Rain Animation - Animated falling raindrops 🌧️ */
+.rain {
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+  animation: fall linear infinite;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Snow Animation - Rotating snowflakes falling ❄️ */
+.snow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
+  border-radius: 50%;
+  animation: snowfall linear infinite;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.snow::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100px) translateX(0) rotateZ(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(100px) rotateZ(360deg);
+    opacity: 0;
+  }
+}
+
+/* Enhanced Cloud Animation - Layered clouds with fade animation ☁️ */
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 100px;
+  animation: drift linear infinite;
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2),
+              inset 5px 5px 10px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(0) scaleX(1);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(100vw) scaleX(1.2);
+    opacity: 0.2;
+  }
+}
+
+/* Enhanced Lightning Animation - Flashing lightning with rain ⚡ */
+.lightning {
+  position: absolute;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 200, 0, 0.7), transparent);
+  animation: flash 0.3s ease-in-out;
+  box-shadow: 0 0 15px rgba(255, 255, 0, 0.8),
+              0 0 30px rgba(255, 150, 0, 0.6),
+              inset 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+@keyframes flash {
+  0%, 100% {
+    opacity: 0;
+    filter: drop-shadow(0 0 0px rgba(255, 255, 0, 0));
+  }
+  20% {
+    opacity: 0.2;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.6));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.9));
+  }
+  75% {
+    opacity: 0.3;
+    filter: drop-shadow(0 0 8px rgba(255, 255, 0, 0.7));
+  }
+}
+
+/* Enhanced Star Animation - Twinkling stars for clear night */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 3s ease-in-out infinite;
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.4;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));
+  }
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  position: relative;
+  z-index: 10;
+}
+
+.dark .glass-effect {
+  background: rgba(0, 0, 0, 0.25);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, #2a2a2a 25%, #383838 50%, #2a2a2a 75%);
+}
+
+.fade-in {
+  animation: fadeIn 0.45s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.weather-icon {
+  font-size: 80px;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.weather-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.suggestion-item:hover {
+  background: rgba(102, 126, 234, 0.06);
+  transform: translateX(6px);
+}
+
+.day-card {
+  min-width: 120px;
+}
+
+.chart-wrap {
+  width: 100%;
+  height: 260px;
+}
+
+/* Weather Emoji Animations */
+
+/* Sun with rotating rays - Clear Sky 🌞 */
+@keyframes rotating-sun {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+    filter: drop-shadow(0 0 12px rgba(255, 200, 0, 0.8));
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+  }
+}
+
+/* Pulsing glow - Partly Cloudy 🌤️ */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px rgba(255, 200, 0, 0.4));
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98);
+    filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+  }
+}
+
+/* Gentle floating - Partly Cloudy ⛅ */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+    filter: drop-shadow(0 2px 6px rgba(150, 150, 150, 0.3));
+  }
+  50% {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 6px 12px rgba(150, 150, 150, 0.4));
+  }
+}
+
+/* Fade in and out - Foggy 🌫️ */
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0.5;
+    filter: blur(2px) drop-shadow(0 0 4px rgba(150, 150, 150, 0.3));
+  }
+  50% {
+    opacity: 0.8;
+    filter: blur(1px) drop-shadow(0 0 8px rgba(150, 150, 150, 0.5));
+  }
+}
+
+/* Bouncing raindrops - Rain 🌧️ */
+@keyframes bounce-rain {
+  0%, 100% {
+    transform: translateY(0px) scaleY(1);
+    filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4));
+  }
+  25% {
+    transform: translateY(-6px) scaleY(0.95);
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+  }
+  50% {
+    transform: translateY(-12px) scaleY(0.9);
+    filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.7));
+  }
+  75% {
+    transform: translateY(-6px) scaleY(0.95);
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+  }
+}
+
+/* Rotating snowflakes falling - Snow ❄️ */
+@keyframes rotating-snowflake {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 4px rgba(96, 165, 250, 0.4));
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08);
+    filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.7));
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    filter: drop-shadow(0 0 4px rgba(96, 165, 250, 0.4));
+  }
+}
+
+/* Flashing lightning - Thunderstorm ⚡ */
+@keyframes flash-lightning {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.4));
+  }
+  10% {
+    opacity: 0.3;
+    transform: scale(0.95);
+    filter: drop-shadow(0 0 2px rgba(236, 72, 153, 0.2));
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 16px rgba(236, 72, 153, 0.9));
+  }
+  30% {
+    opacity: 0.2;
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 2px rgba(236, 72, 153, 0.2));
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 14px rgba(236, 72, 153, 0.8));
+  }
+  60%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.4));
+  }
+}
+
+/* Cloud drifting - Cloudy ☁️ */
+@keyframes cloud-drift {
+  0%, 100% {
+    transform: translateX(-4px) translateY(0px);
+    filter: drop-shadow(0 2px 6px rgba(107, 114, 128, 0.3));
+  }
+  25% {
+    transform: translateX(0px) translateY(-3px);
+    filter: drop-shadow(0 4px 8px rgba(107, 114, 128, 0.4));
+  }
+  50% {
+    transform: translateX(4px) translateY(0px);
+    filter: drop-shadow(0 2px 6px rgba(107, 114, 128, 0.3));
+  }
+  75% {
+    transform: translateX(0px) translateY(3px);
+    filter: drop-shadow(0 4px 8px rgba(107, 114, 128, 0.4));
+  }
+}
+
+/* Apply animations to weather emoji */
+.weather-emoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.weather-emoji.rotating-sun {
+  animation: rotating-sun 4s ease-in-out infinite;
+}
+
+.weather-emoji.pulse {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.weather-emoji.gentle-float {
+  animation: gentle-float 3.5s ease-in-out infinite;
+}
+
+.weather-emoji.fade-in-out {
+  animation: fade-in-out 4s ease-in-out infinite;
+}
+
+.weather-emoji.bounce-rain {
+  animation: bounce-rain 2s ease-in-out infinite;
+}
+
+.weather-emoji.rotating-snowflake {
+  animation: rotating-snowflake 4s ease-in-out infinite;
+}
+
+.weather-emoji.flash-lightning {
+  animation: flash-lightning 4s ease-in-out infinite;
+}
+
+.weather-emoji.cloud-drift {
+  animation: cloud-drift 5s ease-in-out infinite;
+}
+
+/* Large emoji sizes */
+.text-7xl {
+  font-size: 1.875rem;
+  line-height: 1;
+}
+
+.text-8xl {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.text-9xl {
+  font-size: 8rem;
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
