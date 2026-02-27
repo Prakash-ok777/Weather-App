@@ -12,9 +12,9 @@ const WeatherAnimation = ({ weatherCode, isDay }) => {
     container.innerHTML = "";
     if (animationIntervalRef.current) clearInterval(animationIntervalRef.current);
 
-    // Update body background
+    // Update body background classes properly
     const body = document.body;
-    body.className = "min-h-screen flex flex-col items-center p-4 md:p-6 transition-all duration-1000";
+    body.className = "transition-all duration-1000 overflow-x-hidden";
 
     const createRain = () => {
       const rain = document.createElement("div");

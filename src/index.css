@@ -26,6 +26,12 @@ body {
   position: relative;
   overflow-x: hidden;
   transition: background 0.6s;
+  width: 100%;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Background themes */
@@ -34,27 +40,47 @@ body {
 }
 
 .bg-clear-night {
-  background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+  background: linear-gradient(135deg, #0a0020 0%, #1a0540 40%, #0d2050 100%);
 }
 
 .bg-cloudy {
   background: linear-gradient(135deg, #757F9A 0%, #D7DDE8 100%);
 }
 
+.dark .bg-cloudy {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
 .bg-rainy {
   background: linear-gradient(135deg, #373B44 0%, #4286f4 100%);
+}
+
+.dark .bg-rainy {
+  background: linear-gradient(135deg, #0f0c29 0%, #1a1a6a 100%);
 }
 
 .bg-snowy {
   background: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);
 }
 
+.dark .bg-snowy {
+  background: linear-gradient(135deg, #0a1628 0%, #1b3a6b 100%);
+}
+
 .bg-thunderstorm {
   background: linear-gradient(135deg, #2C3E50 0%, #4CA1AF 100%);
 }
 
+.dark .bg-thunderstorm {
+  background: linear-gradient(135deg, #1a0030 0%, #0d2040 100%);
+}
+
 .bg-foggy {
   background: linear-gradient(135deg, #606c88 0%, #3f4c6b 100%);
+}
+
+.dark .bg-foggy {
+  background: linear-gradient(135deg, #1c1c2e 0%, #16213e 100%);
 }
 
 /* Weather animations */
@@ -66,6 +92,7 @@ body {
   height: 100%;
   pointer-events: none;
   z-index: 1;
+  overflow: hidden;
 }
 
 /* Enhanced Rain Animation - Animated falling raindrops 🌧️ */
@@ -83,12 +110,15 @@ body {
     transform: translateY(-100px);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(100vh);
     opacity: 0;
@@ -117,8 +147,13 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes snowfall {
@@ -126,12 +161,15 @@ body {
     transform: translateY(-100px) translateX(0) rotateZ(0deg);
     opacity: 0;
   }
+
   10% {
     opacity: 1;
   }
+
   90% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(100vh) translateX(100px) rotateZ(360deg);
     opacity: 0;
@@ -145,7 +183,7 @@ body {
   border-radius: 100px;
   animation: drift linear infinite;
   box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.2),
-              inset 5px 5px 10px rgba(255, 255, 255, 0.3);
+    inset 5px 5px 10px rgba(255, 255, 255, 0.3);
 }
 
 @keyframes drift {
@@ -153,9 +191,11 @@ body {
     transform: translateX(0) scaleX(1);
     opacity: 0.3;
   }
+
   50% {
     opacity: 0.5;
   }
+
   100% {
     transform: translateX(100vw) scaleX(1.2);
     opacity: 0.2;
@@ -170,23 +210,28 @@ body {
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 200, 0, 0.7), transparent);
   animation: flash 0.3s ease-in-out;
   box-shadow: 0 0 15px rgba(255, 255, 0, 0.8),
-              0 0 30px rgba(255, 150, 0, 0.6),
-              inset 0 0 10px rgba(255, 255, 255, 0.9);
+    0 0 30px rgba(255, 150, 0, 0.6),
+    inset 0 0 10px rgba(255, 255, 255, 0.9);
 }
 
 @keyframes flash {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
     filter: drop-shadow(0 0 0px rgba(255, 255, 0, 0));
   }
+
   20% {
     opacity: 0.2;
     filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.6));
   }
+
   50% {
     opacity: 1;
     filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.9));
   }
+
   75% {
     opacity: 0.3;
     filter: drop-shadow(0 0 8px rgba(255, 255, 0, 0.7));
@@ -205,10 +250,13 @@ body {
 }
 
 @keyframes twinkle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
   }
+
   50% {
     opacity: 1;
     filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));
@@ -221,11 +269,49 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.12);
   position: relative;
   z-index: 10;
+  transition: background 0.4s, border-color 0.4s, box-shadow 0.4s;
 }
 
 .dark .glass-effect {
-  background: rgba(0, 0, 0, 0.25);
-  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(10, 5, 30, 0.55);
+  border-color: rgba(139, 92, 246, 0.35);
+  box-shadow: 0 0 32px rgba(139, 92, 246, 0.18), 0 0 8px rgba(6, 182, 212, 0.12);
+}
+
+/* Dark mode vibrant card accents */
+.dark .weather-card {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18) 0%, rgba(6, 182, 212, 0.12) 100%) !important;
+  border: 1px solid rgba(139, 92, 246, 0.28) !important;
+  box-shadow: 0 4px 18px rgba(139, 92, 246, 0.18);
+  transition: all 0.3s ease;
+}
+
+.dark .weather-card:hover {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.28) 0%, rgba(6, 182, 212, 0.22) 100%) !important;
+  border-color: rgba(167, 139, 250, 0.55) !important;
+  box-shadow: 0 8px 28px rgba(168, 85, 247, 0.32), 0 0 12px rgba(6, 182, 212, 0.2);
+  transform: translateY(-6px);
+}
+
+/* Neon glow for buttons in dark mode */
+.dark .neon-btn {
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.55), 0 0 36px rgba(6, 182, 212, 0.22);
+  border: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.dark .neon-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
+  box-shadow: 0 0 28px rgba(167, 139, 250, 0.75), 0 0 52px rgba(34, 211, 238, 0.35);
+  transform: scale(1.05);
+}
+
+/* Vibrant dark background */
+.dark body,
+.dark #root {
+  background: linear-gradient(135deg, #0a0520 0%, #0d1b2a 50%, #0a0520 100%);
 }
 
 .skeleton {
@@ -238,13 +324,15 @@ body {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
 }
 
 .dark .skeleton {
-  background: linear-gradient(90deg, #2a2a2a 25%, #383838 50%, #2a2a2a 75%);
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.15) 25%, rgba(6, 182, 212, 0.18) 50%, rgba(139, 92, 246, 0.15) 75%);
+  background-size: 200% 100%;
 }
 
 .fade-in {
@@ -256,6 +344,7 @@ body {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -294,10 +383,12 @@ body {
     transform: rotate(0deg) scale(1);
     filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
   }
+
   50% {
     transform: rotate(180deg) scale(1.05);
     filter: drop-shadow(0 0 12px rgba(255, 200, 0, 0.8));
   }
+
   100% {
     transform: rotate(360deg) scale(1);
     filter: drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
@@ -306,11 +397,14 @@ body {
 
 /* Pulsing glow - Partly Cloudy 🌤️ */
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
     filter: drop-shadow(0 0 4px rgba(255, 200, 0, 0.4));
   }
+
   50% {
     opacity: 0.85;
     transform: scale(0.98);
@@ -320,10 +414,13 @@ body {
 
 /* Gentle floating - Partly Cloudy ⛅ */
 @keyframes gentle-float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
     filter: drop-shadow(0 2px 6px rgba(150, 150, 150, 0.3));
   }
+
   50% {
     transform: translateY(-8px);
     filter: drop-shadow(0 6px 12px rgba(150, 150, 150, 0.4));
@@ -332,10 +429,13 @@ body {
 
 /* Fade in and out - Foggy 🌫️ */
 @keyframes fade-in-out {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.5;
     filter: blur(2px) drop-shadow(0 0 4px rgba(150, 150, 150, 0.3));
   }
+
   50% {
     opacity: 0.8;
     filter: blur(1px) drop-shadow(0 0 8px rgba(150, 150, 150, 0.5));
@@ -344,18 +444,23 @@ body {
 
 /* Bouncing raindrops - Rain 🌧️ */
 @keyframes bounce-rain {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) scaleY(1);
     filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.4));
   }
+
   25% {
     transform: translateY(-6px) scaleY(0.95);
     filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
   }
+
   50% {
     transform: translateY(-12px) scaleY(0.9);
     filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.7));
   }
+
   75% {
     transform: translateY(-6px) scaleY(0.95);
     filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
@@ -368,10 +473,12 @@ body {
     transform: rotate(0deg) scale(1);
     filter: drop-shadow(0 0 4px rgba(96, 165, 250, 0.4));
   }
+
   50% {
     transform: rotate(180deg) scale(1.08);
     filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.7));
   }
+
   100% {
     transform: rotate(360deg) scale(1);
     filter: drop-shadow(0 0 4px rgba(96, 165, 250, 0.4));
@@ -380,32 +487,40 @@ body {
 
 /* Flashing lightning - Thunderstorm ⚡ */
 @keyframes flash-lightning {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
     filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.4));
   }
+
   10% {
     opacity: 0.3;
     transform: scale(0.95);
     filter: drop-shadow(0 0 2px rgba(236, 72, 153, 0.2));
   }
+
   20% {
     opacity: 1;
     transform: scale(1.05);
     filter: drop-shadow(0 0 16px rgba(236, 72, 153, 0.9));
   }
+
   30% {
     opacity: 0.2;
     transform: scale(0.9);
     filter: drop-shadow(0 0 2px rgba(236, 72, 153, 0.2));
   }
+
   40% {
     opacity: 1;
     transform: scale(1.03);
     filter: drop-shadow(0 0 14px rgba(236, 72, 153, 0.8));
   }
-  60%, 100% {
+
+  60%,
+  100% {
     opacity: 1;
     transform: scale(1);
     filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.4));
@@ -414,18 +529,23 @@ body {
 
 /* Cloud drifting - Cloudy ☁️ */
 @keyframes cloud-drift {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(-4px) translateY(0px);
     filter: drop-shadow(0 2px 6px rgba(107, 114, 128, 0.3));
   }
+
   25% {
     transform: translateX(0px) translateY(-3px);
     filter: drop-shadow(0 4px 8px rgba(107, 114, 128, 0.4));
   }
+
   50% {
     transform: translateX(4px) translateY(0px);
     filter: drop-shadow(0 2px 6px rgba(107, 114, 128, 0.3));
   }
+
   75% {
     transform: translateX(0px) translateY(3px);
     filter: drop-shadow(0 4px 8px rgba(107, 114, 128, 0.4));
@@ -472,14 +592,14 @@ body {
   animation: cloud-drift 5s ease-in-out infinite;
 }
 
-/* Large emoji sizes */
+/* Large emoji sizes (align with Tailwind) */
 .text-7xl {
-  font-size: 1.875rem;
+  font-size: 4.5rem;
   line-height: 1;
 }
 
 .text-8xl {
-  font-size: 2.25rem;
+  font-size: 6rem;
   line-height: 1;
 }
 
@@ -489,6 +609,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

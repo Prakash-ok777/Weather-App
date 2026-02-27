@@ -77,34 +77,22 @@ footer {
   animation-delay: 0.2s;
 }
 
-/* Logo animations */
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 0.4s ease;
+/* Removed Vite/React logo styles */
+
+/* Responsive splash icon */
+.splash-icon {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 9999px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.8);
+  object-fit: cover;
 }
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #fbbf24aa) scale(1.05);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa) scale(1.05);
-}
-
-@keyframes logoSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logoSpin infinite 3s linear;
+@media (min-width: 768px) {
+  .splash-icon {
+    width: 10rem;
+    height: 10rem;
   }
 }
 

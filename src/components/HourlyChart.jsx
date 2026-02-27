@@ -74,9 +74,9 @@ const HourlyChart = ({ hourly, isDark }) => {
   }, [hourly, isDark]);
 
   return (
-    <div className="glass-effect rounded-2xl p-4 mb-6">
-      <h3 className="text-white font-semibold mb-3">Hourly Temperature</h3>
-      <div className="chart-wrap">
+    <div className="glass-effect rounded-2xl p-2 sm:p-4 mb-4 sm:mb-6">
+      <h3 className="text-base sm:text-lg font-semibold text-white mb-2 sm:mb-3">Hourly Temperature</h3>
+      <div className="chart-wrap h-40 sm:h-48 md:h-64">
         <canvas ref={chartRef}></canvas>
       </div>
     </div>

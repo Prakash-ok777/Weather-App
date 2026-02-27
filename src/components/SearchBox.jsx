@@ -120,7 +120,7 @@ const SearchBox = ({ onSearch }) => {
   const validateCoordinates = (lat, lon) => {
     const latNum = parseFloat(lat);
     const lonNum = parseFloat(lon);
-    
+
     if (isNaN(latNum) || isNaN(lonNum)) {
       setCoordinateError("Please enter valid numbers");
       return false;
@@ -154,7 +154,7 @@ const SearchBox = ({ onSearch }) => {
       const locationName = loc.city
         ? `${loc.city}, ${loc.countryName}`
         : `${latNum.toFixed(4)}, ${lonNum.toFixed(4)}`;
-      
+
       onSearch(latNum, lonNum, locationName);
       setCoordinateError("");
     } catch (error) {
@@ -187,7 +187,7 @@ const SearchBox = ({ onSearch }) => {
         {!showCoordinates ? (
           <>
             <div className="relative mb-4">
-              <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
+              <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-purple-400"></i>
               <input
                 ref={inputRef}
                 type="text"
@@ -195,29 +195,31 @@ const SearchBox = ({ onSearch }) => {
                 autoComplete="off"
                 value={searchInput}
                 onChange={(e) => handleSearchInput(e.target.value)}
-                className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all shadow-sm bg-white text-gray-900 placeholder-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 text-base md:text-lg"
+                className="w-full pl-12 pr-4 py-4 rounded-xl border-2 border-gray-200 focus:border-purple-500 focus:outline-none transition-all shadow-sm bg-white text-gray-900 placeholder-gray-500 dark:bg-[#0d0825] dark:border-purple-700 dark:text-white dark:placeholder-purple-400 dark:focus:border-cyan-400 dark:shadow-[0_0_12px_rgba(139,92,246,0.25)] text-base md:text-lg"
               />
             </div>
-            <div className="flex gap-3 flex-col md:flex-row">
+            <div className="flex gap-2 sm:gap-3 flex-col sm:flex-row">
               <button
                 onClick={handleCurrentLocation}
-                className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2 text-base md:text-lg"
+                className="flex-[2] bg-gradient-to-r from-blue-500 to-blue-600 dark:from-violet-600 dark:to-cyan-500 text-white py-3 sm:py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl dark:hover:shadow-[0_0_24px_rgba(139,92,246,0.6)] flex items-center justify-center gap-2 text-sm sm:text-base md:text-lg px-2 sm:px-4 hover:scale-105 dark:hover:scale-[1.03]"
               >
                 <i className="fas fa-location-crosshairs"></i> Use Current Location
               </button>
-              <button
-                onClick={handleSearch}
-                className="px-6 bg-white text-purple-600 font-semibold rounded-xl shadow hover:scale-105 transition dark:bg-gray-800 dark:text-purple-400 text-base md:text-lg"
-              >
-                Search
-              </button>
-              <button
-                onClick={() => setShowCoordinates(true)}
-                className="px-6 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-semibold rounded-xl shadow hover:scale-105 transition text-base md:text-lg"
-                title="Search by latitude and longitude"
-              >
-                <i className="fas fa-map-pin"></i> Coordinates
-              </button>
+              <div className="flex gap-2 sm:gap-3 flex-1">
+                <button
+                  onClick={handleSearch}
+                  className="flex-1 py-3 sm:py-0 px-2 sm:px-6 bg-white text-purple-600 font-semibold rounded-xl shadow hover:scale-105 transition dark:bg-gradient-to-r dark:from-purple-700 dark:to-violet-600 dark:text-white dark:shadow-[0_0_14px_rgba(139,92,246,0.4)] dark:hover:shadow-[0_0_22px_rgba(139,92,246,0.7)] text-sm sm:text-base md:text-lg"
+                >
+                  Search
+                </button>
+                <button
+                  onClick={() => setShowCoordinates(true)}
+                  className="flex-1 py-3 sm:py-0 px-2 sm:px-6 bg-gradient-to-r from-indigo-500 to-indigo-600 dark:from-cyan-600 dark:to-blue-600 text-white font-semibold rounded-xl shadow hover:scale-105 transition dark:shadow-[0_0_14px_rgba(6,182,212,0.4)] dark:hover:shadow-[0_0_22px_rgba(6,182,212,0.7)] text-sm sm:text-base md:text-lg flex items-center justify-center gap-1 sm:gap-2"
+                  title="Search by latitude and longitude"
+                >
+                  <i className="fas fa-map-pin"></i> <span className="hidden sm:inline">Coordinates</span><span className="sm:hidden">Coords</span>
+                </button>
+              </div>
             </div>
           </>
         ) : (
@@ -299,19 +301,19 @@ const SearchBox = ({ onSearch }) => {
       </div>
       {showSuggestions && suggestions.length > 0 && createPortal(
         <ul
-          className="fixed bg-white dark:bg-gray-800 shadow-2xl rounded-xl border border-gray-100 dark:border-gray-700 z-[9999] overflow-y-auto max-h-80 w-full md:w-[32rem]"
+          className="fixed bg-white dark:bg-[#100030] shadow-2xl dark:shadow-[0_0_32px_rgba(139,92,246,0.4)] rounded-xl border border-gray-100 dark:border-purple-700/50 z-[9999] overflow-y-auto max-h-80 w-full md:w-[32rem]"
           style={getDropdownStyle()}
         >
           {suggestions.map((city, index) => (
             <li
               key={index}
               onClick={() => handleSuggestionClick(city)}
-              className="suggestion-item p-4 cursor-pointer border-b border-gray-100 dark:border-gray-700 last:border-b-0 flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
+              className="suggestion-item p-4 cursor-pointer border-b border-gray-100 dark:border-purple-900/40 last:border-b-0 flex items-center gap-3 hover:bg-gray-100 dark:hover:bg-purple-900/30 transition-all"
             >
-              <i className="fas fa-map-marker-alt text-purple-500"></i>
+              <i className="fas fa-map-marker-alt text-purple-500 dark:text-cyan-400"></i>
               <div>
                 <p className="font-semibold text-gray-900 dark:text-white text-base md:text-lg">{city.name}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-600 dark:text-purple-300">
                   {city.admin1 || ""} {city.country || ""}
                 </p>
               </div>

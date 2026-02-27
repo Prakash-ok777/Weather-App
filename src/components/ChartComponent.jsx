@@ -209,33 +209,33 @@ const ChartComponent = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 animate-slideInUp" style={{ animationDelay: '0.2s' }}>
-      <div className="glass rounded-xl p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
-        <h5 className="text-sm font-semibold text-white/80 mb-3 flex items-center gap-2">
-          <i className="fas fa-thermometer-half text-yellow-400"></i>Hourly Temperature
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mt-4 animate-slideInUp" style={{ animationDelay: '0.2s' }}>
+      <div className="glass rounded-lg sm:rounded-xl p-2 sm:p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+        <h5 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+          <i className="fas fa-thermometer-half text-yellow-400 text-xs sm:text-sm"></i>Temp
         </h5>
-        <canvas ref={hourlyChartRef} height="120"></canvas>
+        <canvas ref={hourlyChartRef} height="70"></canvas>
       </div>
 
-      <div className="glass rounded-xl p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
-        <h5 className="text-sm font-semibold text-white/80 mb-3 flex items-center gap-2">
-          <i className="fas fa-droplet text-cyan-400"></i>Temperature & Humidity
+      <div className="glass rounded-lg sm:rounded-xl p-2 sm:p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+        <h5 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+          <i className="fas fa-droplet text-cyan-400 text-xs sm:text-sm"></i>Humidity
         </h5>
-        <canvas ref={tempHumChartRef} height="120"></canvas>
+        <canvas ref={tempHumChartRef} height="70"></canvas>
       </div>
 
-      <div className="glass rounded-xl p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
-        <h5 className="text-sm font-semibold text-white/80 mb-3 flex items-center gap-2">
-          <i className="fas fa-wind text-blue-400"></i>Wind Speed
+      <div className="glass rounded-lg sm:rounded-xl p-2 sm:p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+        <h5 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+          <i className="fas fa-wind text-blue-400 text-xs sm:text-sm"></i>Wind
         </h5>
-        <canvas ref={presWindChartRef} height="120"></canvas>
+        <canvas ref={presWindChartRef} height="70"></canvas>
       </div>
 
-      <div className="glass rounded-xl p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
-        <h5 className="text-sm font-semibold text-white/80 mb-3 flex items-center gap-2">
-          <i className="fas fa-cloud text-purple-400"></i>Cloud & Rain Coverage
+      <div className="glass rounded-lg sm:rounded-xl p-2 sm:p-4 transform transition-all duration-300 hover:shadow-lg hover:scale-[1.02]">
+        <h5 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 flex items-center gap-1 sm:gap-2">
+          <i className="fas fa-cloud text-purple-400 text-xs sm:text-sm"></i>Rain
         </h5>
-        <canvas ref={uvCloudRainChartRef} height="120"></canvas>
+        <canvas ref={uvCloudRainChartRef} height="70"></canvas>
       </div>
     </div>
   );

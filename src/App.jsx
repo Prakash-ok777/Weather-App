@@ -63,12 +63,12 @@ const App = () => {
   };
 
   return (
-    <div className={isDark ? "dark" : ""}>
+    <div className={`relative w-full overflow-x-hidden box-border bg-transparent ${isDark ? "dark" : ""}`}>
       <WeatherAnimation weatherCode={currentWeatherCode} isDay={isDay} />
       {showIntro ? (
         <IntroPage onEnter={handleEnter} onToggleTheme={toggleTheme} />
       ) : (
-        <div className="min-h-screen flex flex-col items-center p-4 md:p-6 transition-all duration-1000">
+        <div className="min-h-screen flex flex-col items-center p-3 sm:p-4 md:p-6 transition-all duration-1000 overflow-x-hidden w-full box-border">
           <div className="w-full max-w-6xl">
             <Header onToggleTheme={toggleTheme} isDark={isDark} />
             <SearchBox onSearch={loadWeather} />
